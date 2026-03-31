@@ -3,104 +3,101 @@
 @tailwind utilities;
 
 @layer base {
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-  }
-
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'DM Sans', system-ui, sans-serif;
     background-color: #ffffff;
-    color: #1B2B5E;
+    color: #0F1F4B;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-
-  ::selection {
-    background-color: #C8860A;
-    color: #ffffff;
-  }
-
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #f0f3fa;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #C8860A;
-    border-radius: 3px;
-  }
+  ::selection { background-color: #1a56db; color: #fff; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #f1f5f9; }
+  ::-webkit-scrollbar-thumb { background: #1a56db; border-radius: 99px; }
 }
 
 @layer components {
   .section-heading {
-    @apply font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900 leading-tight;
+    @apply font-heading font-bold text-slate-900 leading-[1.08] tracking-tight;
+    font-size: clamp(2rem, 4vw, 3.25rem);
   }
 
-  .section-subheading {
-    @apply text-gold-500 font-semibold text-sm uppercase tracking-widest mb-3;
+  .section-label {
+    @apply inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-blue-600 mb-4;
+  }
+  .section-label::before {
+    content: '';
+    @apply block w-5 h-0.5 bg-blue-600 rounded-full;
   }
 
   .btn-primary {
-    @apply bg-gold-500 hover:bg-gold-600 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 inline-flex items-center gap-2;
+    @apply bg-blue-600 text-white font-semibold px-7 py-3.5 rounded-xl
+           inline-flex items-center gap-2 transition-all duration-200 text-sm
+           hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/25 hover:-translate-y-0.5
+           active:translate-y-0;
   }
 
   .btn-outline {
-    @apply border-2 border-navy-900 text-navy-900 hover:bg-navy-900 hover:text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 inline-flex items-center gap-2;
+    @apply border border-slate-200 text-slate-700 font-semibold px-7 py-3.5 rounded-xl
+           inline-flex items-center gap-2 transition-all duration-200 text-sm bg-white
+           hover:border-slate-400 hover:text-slate-900;
   }
 
   .card {
-    @apply bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1;
+    @apply bg-white rounded-2xl border border-slate-100
+           hover:border-blue-100 hover:shadow-xl hover:shadow-blue-600/5
+           transition-all duration-300 hover:-translate-y-1;
+  }
+
+  .tag {
+    @apply inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full;
   }
 }
 
 @layer utilities {
-  .text-gradient {
-    background: linear-gradient(135deg, #1B2B5E 0%, #C8860A 100%);
+  .text-gradient-blue {
+    background: linear-gradient(120deg, #1a56db 0%, #0ea5e9 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .text-gradient-gold {
-    background: linear-gradient(135deg, #C8860A 0%, #E8720C 100%);
+    background: linear-gradient(120deg, #C8860A 0%, #E8720C 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .bg-pattern {
-    background-image: radial-gradient(circle at 1px 1px, #e0e7ff 1px, transparent 0);
-    background-size: 32px 32px;
+  .bg-section {
+    background-color: #f8fafc;
   }
 
-  .wave-border {
-    position: relative;
+  .bg-navy {
+    background-color: #0F1F4B;
   }
 
-  .wave-border::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #1B2B5E, #0097A7, #C8860A, #E8720C);
-    border-radius: 2px;
+  .dot-grid {
+    background-image: radial-gradient(circle, #cbd5e140 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* Makes image white bg invisible — blends with page */
+  .blend-multiply {
+    mix-blend-mode: multiply;
+  }
+
+  .glass {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.9);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }

@@ -10,6 +10,7 @@ import Testimonials from './components/Testimonials'
 import FranchiseSteps from './components/FranchiseSteps'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import Brands from './components/Brands'
 import WhatsAppButton from './components/WhatsAppButton'
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
       <AllProductsShowcase />
       <GrowthJourney />
       <Services />
+      <Brands />
       <Stats />
       <Testimonials />
       <FranchiseSteps />
