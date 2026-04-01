@@ -1,169 +1,165 @@
-import { useState } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { TrendingUp, ArrowRight } from 'lucide-react'
+import { ArrowRight, TrendingUp } from 'lucide-react'
 
 const stages = [
   {
-    id: 1,
-    stage: 'Stage 01',
-    title: 'The Beginning',
-    revenue: '₹10K–30K/mo',
-    desc: 'A small hardware shop with limited stock. You join Shyama Business Growth with a dream and we provide the first set of 30–40 products to get you started.',
+    level: 'Level 01',
+    title: 'Starter Retail Setup',
+    investment: '₹5–10 Lakh Stock',
+    revenue: '₹30K–80K/month',
+    desc: 'Start with a focused product range including tyres, batteries, and essential appliances. Shyama provides the initial stock and business guidance.',
     image: '/growth/stage-1-small-shop.jpeg',
-    products: '5–10 products',
-    accent: '#6B7280',
-    accentBg: '#F3F4F6',
+    color: '#6B7280',
   },
   {
-    id: 2,
-    stage: 'Stage 02',
-    title: 'Growing Confidence',
-    revenue: '₹50K–80K/mo',
-    desc: 'Your shelves are filling up. Batteries, fans, tyres — customers know your shop. Shyama provides training, restocks, and business guidance to keep you growing.',
+    level: 'Level 02',
+    title: 'Multi-Category Retail Store',
+    investment: '₹15–25 Lakh Stock',
+    revenue: '₹1L–3L/month',
+    desc: 'Expand your store with cooling, kitchen, and power products. Your shop becomes a known destination in your area.',
     image: '/growth/stage-2-growing-shop.jpeg',
-    products: '15–20 products',
-    accent: '#0097A7',
-    accentBg: '#E5F6F8',
+    color: '#0097A7',
   },
   {
-    id: 3,
-    stage: 'Stage 03',
-    title: 'Established Store',
-    revenue: '₹1.5L–2.5L/mo',
-    desc: 'A full showroom with coolers, geysers, tyres, electronics — all on display. You are now a trusted name in your area with regular customers.',
+    level: 'Level 03',
+    title: 'High-Performing Showroom',
+    investment: '₹30–60 Lakh Stock',
+    revenue: '₹5L–15L/month',
+    desc: 'Full product range with strong customer base, repeat buyers, and steady monthly revenue.',
     image: '/growth/stage-3-established-store.jpeg',
-    products: '30–40 products',
-    accent: '#C8860A',
-    accentBg: '#FDF4E3',
+    color: '#C8860A',
   },
   {
-    id: 4,
-    stage: 'Stage 04',
-    title: 'Premium Business',
-    revenue: '₹5L+/mo',
-    desc: 'A premium multi-brand showroom. Staff, glass displays, tyre walls, appliance sections. You are a success story and Shyama celebrates your growth.',
+    level: 'Level 04',
+    title: 'Retail Business Powerhouse',
+    investment: '₹1Cr+ Inventory',
+    revenue: '₹50L–₹5Cr/month',
+    desc: 'A premium multi-category showroom with strong brand presence, staff, and large-scale operations.',
     image: '/growth/stage-4-premium-store.jpeg',
-    products: '40+ products',
-    accent: '#E8720C',
-    accentBg: '#FEF0E6',
+    color: '#E8720C',
   },
 ]
 
 export default function GrowthJourney() {
-  const [active, setActive] = useState(0)
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
-  const s = stages[active]
 
   return (
-    <section id="growth" className="py-28 bg-mesh" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6">
+    <section ref={ref} className="py-32 bg-gradient-to-b from-[#0E1A43] to-[#1B2B5E] text-white overflow-hidden">
+
+      <div className="max-w-6xl mx-auto px-6">
 
         {/* Header */}
-        <div className={`text-center mb-16 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="section-label justify-center">Retailer Growth Story</div>
-          <h2 className="section-heading mb-4">
-            From Small Shop to<br />
-            <span className="text-gradient-gold">₹5L+ Monthly Revenue</span>
+        <div className={`text-center mb-20 ${inView ? 'opacity-100' : 'opacity-0 translate-y-8'} transition-all duration-700`}>
+          <div className="inline-block px-4 py-2 bg-white/10 rounded-full text-xs tracking-widest uppercase mb-4">
+            Business Growth Model
+          </div>
+
+          <h2 className="text-5xl font-bold leading-tight">
+            From ₹5L Stock to
+            <br />
+            <span className="text-[#F4C66A]">₹5 Crore Monthly Business</span>
           </h2>
-          <p className="text-gray-400 max-w-xl mx-auto text-base">
-            Real journeys of our partners — see how Shyama transforms small shops into thriving businesses.
+
+          <p className="text-white/70 mt-4 max-w-2xl mx-auto">
+            This is not just a shop — this is a scalable retail system designed to grow step-by-step into a high-revenue business.
           </p>
         </div>
 
-        {/* Stage selector */}
-        <div className={`flex flex-wrap justify-center gap-3 mb-14 transition-all duration-700 delay-100 ${inView ? 'opacity-100' : 'opacity-0'}`}>
-          {stages.map((s, i) => (
-            <button
-              key={s.id}
-              onClick={() => setActive(i)}
-              className={`flex items-center gap-3 px-5 py-3 rounded-xl text-sm font-semibold transition-all duration-200 border ${
-                i === active
-                  ? 'border-transparent text-white shadow-lg'
-                  : 'bg-white border-gray-200 text-gray-500 hover:border-gray-300'
-              }`}
-              style={i === active ? { background: s.accent } : {}}
-            >
-              <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${
-                i === active ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-500'
-              }`}>
-                {i + 1}
-              </span>
-              {s.title}
-            </button>
-          ))}
-        </div>
+        {/* Vertical Journey */}
+        <div className="relative">
 
-        {/* Content */}
-        <div className={`grid lg:grid-cols-2 gap-14 items-center transition-all duration-500 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} key={active}>
+          {/* Vertical Line */}
+          <div className="absolute left-6 top-0 bottom-0 w-[2px] bg-white/20 hidden md:block" />
 
-          {/* Image */}
-          <div className="relative">
-            <img
-              src={s.image}
-              alt={s.title}
-              className="w-full h-[460px] object-cover rounded-3xl shadow-2xl"
-            />
-            {/* Revenue overlay */}
-            <div className="absolute bottom-6 left-6 right-6 glass rounded-2xl p-4 flex items-center gap-4">
-              <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: s.accentBg }}>
-                <TrendingUp size={20} style={{ color: s.accent }} />
+          <div className="space-y-16">
+
+            {stages.map((s, i) => (
+              <div
+                key={i}
+                className={`grid md:grid-cols-[80px_1fr] gap-8 items-center ${
+                  inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                } transition-all duration-700`}
+                style={{ transitionDelay: `${i * 150}ms` }}
+              >
+
+                {/* Step indicator */}
+                <div className="hidden md:flex justify-center">
+                  <div
+                    className="w-12 h-12 rounded-full flex items-center justify-center font-bold shadow-lg"
+                    style={{ background: s.color }}
+                  >
+                    {i + 1}
+                  </div>
+                </div>
+
+                {/* Card */}
+                <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl overflow-hidden shadow-xl">
+
+                  <div className="grid lg:grid-cols-2">
+
+                    {/* Image */}
+                    <div className="relative">
+                      <img
+                        src={s.image}
+                        className="w-full h-[280px] object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+
+                      <div className="absolute bottom-4 left-4">
+                        <div className="text-xs text-white/70">Monthly Revenue</div>
+                        <div className="text-xl font-bold">{s.revenue}</div>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-8">
+
+                      <div className="text-xs uppercase tracking-widest mb-2 text-white/50">
+                        {s.level}
+                      </div>
+
+                      <h3 className="text-2xl font-bold mb-3">
+                        {s.title}
+                      </h3>
+
+                      <p className="text-white/70 mb-6 text-sm leading-relaxed">
+                        {s.desc}
+                      </p>
+
+                      <div className="flex gap-6 text-sm">
+                        <div>
+                          <div className="text-white/40">Investment</div>
+                          <div className="font-semibold">{s.investment}</div>
+                        </div>
+                        <div>
+                          <div className="text-white/40">Revenue</div>
+                          <div className="font-semibold text-[#F4C66A]">{s.revenue}</div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+
               </div>
-              <div>
-                <div className="text-xs text-gray-400 font-medium mb-0.5">Monthly Revenue Potential</div>
-                <div className="font-heading font-bold text-navy-900 text-xl">{s.revenue}</div>
-              </div>
-            </div>
+            ))}
 
-            {/* Stage label */}
-            <div
-              className="absolute -top-4 -left-4 px-4 py-2 rounded-xl text-white text-xs font-bold shadow-lg"
-              style={{ background: s.accent }}
-            >
-              {s.stage}
-            </div>
-          </div>
-
-          {/* Text */}
-          <div>
-            <div className="inline-block text-xs font-bold uppercase tracking-widest mb-3 px-3 py-1.5 rounded-lg" style={{ background: s.accentBg, color: s.accent }}>
-              {s.stage}
-            </div>
-            <h3 className="font-heading font-bold text-4xl text-navy-900 mb-4">{s.title}</h3>
-            <p className="text-gray-500 text-base leading-relaxed mb-8">{s.desc}</p>
-
-            <div className="grid grid-cols-2 gap-4 mb-10">
-              <div className="bg-white rounded-2xl p-5 border border-gray-100">
-                <div className="text-xs text-gray-400 mb-1 font-medium">Products Stocked</div>
-                <div className="font-heading font-bold text-navy-900 text-lg">{s.products}</div>
-              </div>
-              <div className="bg-white rounded-2xl p-5 border border-gray-100">
-                <div className="text-xs text-gray-400 mb-1 font-medium">Monthly Revenue</div>
-                <div className="font-heading font-bold text-lg" style={{ color: s.accent }}>{s.revenue}</div>
-              </div>
-            </div>
-
-            <div className="flex gap-3">
-              {active > 0 && (
-                <button onClick={() => setActive(active - 1)} className="btn-outline">
-                  Previous
-                </button>
-              )}
-              {active < stages.length - 1 ? (
-                <button onClick={() => setActive(active + 1)} className="btn-primary">
-                  Next Stage <ArrowRight size={15} />
-                </button>
-              ) : (
-                <a
-                  href="https://wa.me/916201739296?text=Hi!%20I%20want%20to%20start%20my%20journey%20with%20Shyama%20Business%20Growth."
-                  target="_blank" rel="noopener noreferrer"
-                  className="btn-primary"
-                >
-                  Start Your Journey <ArrowRight size={15} />
-                </a>
-              )}
-            </div>
           </div>
         </div>
+
+        {/* CTA */}
+        <div className="text-center mt-24">
+          <a
+            href="https://wa.me/916201739296?text=Hi!%20I%20want%20to%20build%20a%20retail%20business"
+            target="_blank"
+            className="inline-flex items-center gap-2 bg-[#F4C66A] text-[#1B2B5E] px-8 py-4 rounded-full font-bold shadow-lg hover:scale-105 transition"
+          >
+            Build Your Business with Shyama
+            <ArrowRight size={18} />
+          </a>
+        </div>
+
       </div>
     </section>
   )
